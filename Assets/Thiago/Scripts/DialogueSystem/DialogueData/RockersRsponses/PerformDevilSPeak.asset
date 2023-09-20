@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b9ee2c52e753cc49a494fe4679c0865, type: 3}
+  m_Name: PerformDevilSPeak
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Famous, huh?
+  - How about you perform in hell?
+  - There are a lot of people there have been wanting a show for a long time.
+  responses: []
+  IsDevil: 1
+  WrongAnswer: 0
+  devilAnim: {fileID: 0}
+  Continue: {fileID: 11400000, guid: 873da6cc04c15384391749c351dc4b18, type: 2}
