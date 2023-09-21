@@ -40,6 +40,11 @@ public class TypewriterEffect : MonoBehaviour
         typingCoroutine = StartCoroutine(TypeText(textToType, textLabel));
     }
 
+    public void updateSpeaker(AudioSource speak)
+    {
+        speak1 = speak;
+    }
+
     public void Stop()
     {
         StopCoroutine(typingCoroutine);
@@ -78,7 +83,7 @@ public class TypewriterEffect : MonoBehaviour
                     count = 0;
                     if (dialogue.isHuman)
                     {
-                        PlayRandomAudio();
+                        speak1.Play();
                     }
                     else
                     {

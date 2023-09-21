@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b9ee2c52e753cc49a494fe4679c0865, type: 3}
+  m_Name: Fred
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Hi, my name is Fred
+  - I wanna become a pro player in Bullet Hell games
+  - Help me out!
+  responses:
+  - responseText: Offer him a RTX 4090
+    dialogueObject: {fileID: 11400000, guid: 4013a9d62966aae49b826140846b66a4, type: 2}
+  - responseText: Offer him an 90's computer
+    dialogueObject: {fileID: 11400000, guid: 23879fec39b09a54ab080ae28eda0466, type: 2}
+  - responseText: How about you join a E-sports team?
+    dialogueObject: {fileID: 11400000, guid: 97ff3b7b102e6934db09852e3dc75ef9, type: 2}
+  - responseText: How about a place you can practice?
+    dialogueObject: {fileID: 11400000, guid: b5898355039fb36488ce9c722c36e4f0, type: 2}
+  IsDevil: 0
+  WrongAnswer: 0
+  devilAngryTalk: 0
+  Continue: {fileID: 0}

@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b9ee2c52e753cc49a494fe4679c0865, type: 3}
-  m_Name: RockerEscpae
+  m_Name: RTXResp
   m_EditorClassIdentifier: 
   dialogue:
-  - You are being strange...
-  - I'am getting out of here
+  - I don't need an 4090 to play BULLET HEEL games...
   responses: []
   IsDevil: 0
-  WrongAnswer: 0
+  WrongAnswer: 1
   devilAngryTalk: 0
-  Continue: {fileID: 0}
+  Continue: {fileID: 11400000, guid: 6ea69633d979c8c469a9c188b0ae723a, type: 2}

@@ -7,18 +7,26 @@ using UnityEngine.UI;
 
 public class DialogueUI : MonoBehaviour
 {
+    public delegate void UiHumanHandler(Transform posA, Transform posB);
+    public event UiHumanHandler UiHuman;
+
+
+    public Transform posA;
+    public Transform posB;
+    public Animator devilAnimEscaped;
+    public DialogueActivator dialogueActivator;
+    [SerializeField] private Animator devilAnimTalk;
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TMP_Text textLabel;
     [SerializeField] private TMP_Text textCunning;
-    [SerializeField] private DialogueActivator dialogueActivator;
-    [SerializeField] private Animator devilAnim;
-    [SerializeField] private Animator humanAnim;
     [SerializeField] private Animator devilCam;
     [SerializeField] private Image cunningBar;
     [SerializeField] private Animator cunningBarAnim;
     [SerializeField] private Animator CunningBarParentAnim;
-    [SerializeField] private DialogueObject[] escapeDialogues;
-    [SerializeField] private HumansMovement humans;
+    
+    private DialogueObject escapeDialogues; 
+    private HumansMovement human;
+    private Animator humanAnim;
     
     private int cunningPer;
     private float cunningAmount = 100f;
@@ -29,18 +37,32 @@ public class DialogueUI : MonoBehaviour
 
     public bool isHuman { get; private set; }
     public bool isOpen { get; private set; }
-
     
     private void Start()
     {
+        if (UiHuman != null)
+        {
+            UiHuman(posA, posB);
+        }
         typewriterEffect = GetComponent<TypewriterEffect>();
         responseHadler = GetComponent<ResponseHadler>();
+    }
+    
+    public void OnHumanSpawned(HumansMovement reference, Animator anim, DialogueObject newDialogue, DialogueObject escapeDialogue, AudioSource speak1)
+    {
+        humanAnim = anim;
+        dialogueActivator.UpdateDialogueObejct(newDialogue);
+        typewriterEffect.updateSpeaker(speak1);
+        escapeDialogues = escapeDialogue;
+        human = reference;
     }
 
     private void Update()
     {
         textCunning.text = ((cunningBar.fillAmount) * 100).ToString("0.0") + "%";
     }
+
+    
 
     public void ShowDialogue(DialogueObject dialogueObject)
     {
@@ -74,7 +96,7 @@ public class DialogueUI : MonoBehaviour
         responseHadler.AddResponseEvents(responseEvents);
     }
 
-    public bool isOver = false;
+    private bool isOver = false;
     private bool doOnce = false;
     
     private IEnumerator StepThroughtDialogue(DialogueObject dialogueObject)
@@ -88,9 +110,9 @@ public class DialogueUI : MonoBehaviour
             {
                 if (dialogueObject.devilAngryTalk)
                 {
-                    devilAnim.SetBool("IsAngry", true);
+                    devilAnimTalk.SetBool("IsAngry", true);
                 }
-                devilAnim.SetBool("IsSpeaking", true);
+                devilAnimTalk.SetBool("IsSpeaking", true);
             }
             else
             {
@@ -103,7 +125,7 @@ public class DialogueUI : MonoBehaviour
             textLabel.text = dialogue;
 
 
-            devilAnim.SetBool("IsSpeaking", false);
+            devilAnimTalk.SetBool("IsSpeaking", false);
             humanAnim.SetBool("IsSpeaking", false);
             yield return new WaitForSeconds(.5f);
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
@@ -113,7 +135,9 @@ public class DialogueUI : MonoBehaviour
         
         if (cunningBar.fillAmount <= 0)
         {
-            humans.escaped = true;
+            human.escaped = true;
+            cunningBar.fillAmount = 100;
+            cunningAmount = 100f;
         }
         
         if (dialogueObject.HasResponses)
@@ -149,7 +173,7 @@ public class DialogueUI : MonoBehaviour
             }
             
             devilCam.SetBool("Appers", false);
-            devilAnim.SetBool("Escaped", false);
+            devilAnimTalk.SetBool("Escaped", false);
         }
     }
 
@@ -207,13 +231,14 @@ public class DialogueUI : MonoBehaviour
     {
         
         yield return new WaitForSeconds(.5f);
-        devilAnim.SetBool("IsAngry", false);
-        devilAnim.SetBool("Escaped", true);
+        devilAnimTalk.SetBool("IsAngry", false);
+        devilAnimTalk.SetBool("Escaped", true);
         
     }
 
     private IEnumerator cunningPlus()
     {
+        dialogueActivator.canInteract = false;
         CunningBarParentAnim.SetTrigger("Act");
         yield return new WaitForSeconds(.5f);
         cunningBarAnim.SetTrigger("Act");
@@ -234,10 +259,11 @@ public class DialogueUI : MonoBehaviour
         cunningBar.fillAmount = cunningAmount / 100;
         CunningBarParentAnim.SetTrigger("Back");
         yield return new WaitForSeconds(1f);
+        dialogueActivator.canInteract = true;
         if (cunningBar.fillAmount <= 0)
         {
             dialogueActivator.canInteract = false;
-            ShowDialogue(escapeDialogues[dialogueActivator.id]);
+            ShowDialogue(escapeDialogues);
         }
         
     }

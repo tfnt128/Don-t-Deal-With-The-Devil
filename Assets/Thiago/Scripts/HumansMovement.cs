@@ -5,97 +5,124 @@ using UnityEngine;
 
 public class HumansMovement : MonoBehaviour
 {
-        [SerializeField] private Transform posA;
-        [SerializeField] private Transform posB;
-        [SerializeField] private float speed = 2.0f;
-        [SerializeField] private Animator devilAnim;
-        public bool escaped { private get; set; }
+    
+        public delegate void humanSpawnedHandler(HumansMovement selfReference, Animator anim, DialogueObject newDialogue, DialogueObject escapeDialogue, AudioSource speak1);
+        public event humanSpawnedHandler humanSpawned;
         
-        private Vector3 inicialPos;
+        
+        [SerializeField] private float speed = 2.0f;
+        [SerializeField] private DialogueObject characterDialogue;
+        [SerializeField] private DialogueObject escapeDialogue;
+        [SerializeField] private Animator talkAnim;
+        
+        private RandomPersons nextPerson;
+        public bool escaped;
+        private Transform posA;
+        private Transform posB;
         private bool toB = true;
         private Animator anim;
-        private GameObject TableCam;
         private Animator Fade;
         private CinemachineVirtualCamera virtualCam;
-    
+        private AudioSource speak;
+        private Animator devilAnim;
+        private DialogueUI dialogueUI;
+        
+        
         private void Start()
         {
+            speak = GetComponentInChildren<AudioSource>();
+            dialogueUI = FindObjectOfType<DialogueUI>();
+            if (dialogueUI != null)
+            {
+                posA = dialogueUI.posA;
+                posB = dialogueUI.posB;
+                devilAnim = dialogueUI.devilAnimEscaped;
+                HumansMovement selfReference = this;
+                dialogueUI.OnHumanSpawned(selfReference,talkAnim, characterDialogue, escapeDialogue, speak);
+            }
+            anim = GetComponent<Animator>();
+            nextPerson = FindObjectOfType<RandomPersons>();
             GameObject fadego = GameObject.FindGameObjectWithTag("Fade");
             Fade = fadego.GetComponent<Animator>();
-            anim = GetComponent<Animator>();
-            inicialPos = posA.transform.position;
-            transform.position = inicialPos;
-            TableCam = GameObject.FindGameObjectWithTag("TableCam");
-            virtualCam = TableCam.GetComponent<CinemachineVirtualCamera>();
+            transform.position = posA.transform.position;
+            virtualCam = GetComponentInChildren<CinemachineVirtualCamera>();
+
+
         }
-    
+        public void OnUiHuman(Transform posA, Transform posB)
+        {
+            this.posA = posA;
+            this.posB = posB;
+        }
+        
+
         private void Update()
         {
             if (toB)
             {
-                transform.position = Vector3.MoveTowards(transform.position, posB.position, speed * Time.deltaTime);
-    
-                if (transform.position == posB.position)
-                {
-                    anim.SetBool("IsWalking", false);
-                    StartCoroutine(changeCam());
-                    toB = false;
-                }
+                MoveToPosition(posB);
+                dialogueUI.dialogueActivator.canInteract = false;
             }
-            if(escaped)
+            else if (escaped)
             {
                 StartCoroutine(Escape());
-                
+            }
+        }
+
+        private void MoveToPosition(Transform target)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+
+            if (transform.position == target.position)
+            {
+                anim.SetBool("IsWalking", false);
+                StartCoroutine(changeCam());
+                toB = false;
             }
         }
 
         private bool doOnce = false;
-        private int cont;
-        IEnumerator changeCam()
+
+        private IEnumerator changeCam()
         {
             if (!escaped)
             {
                 yield return new WaitForSeconds(1f);
                 Fade.SetTrigger("FadeIn");
                 yield return new WaitForSeconds(.3f);
-
-                if (virtualCam.Priority == 11)
-                {
-                    virtualCam.Priority = 9;
-                }
-                else
-                {
-                    virtualCam.Priority = 11;
-                }
-                
+                virtualCam.Priority = 11;
+                yield return new WaitForSeconds(.1f);
                 Fade.SetTrigger("FadeOut");
+                dialogueUI.dialogueActivator.canInteract = true;
             }
-            else
+            else if (!doOnce)
             {
-                if (!doOnce)
-                {
-                    doOnce = true;
-                    devilAnim.SetBool("Escaped", true);
-                    Fade.SetTrigger("FadeIn");
-                    yield return new WaitForSeconds(.4f);
-                    virtualCam.Priority = 9;
-                    Fade.SetTrigger("FadeOut");
-                    cont++;
-
-                }
+                doOnce = true;
+                devilAnim.SetBool("Escaped", true);
+                Fade.SetTrigger("FadeIn");
+                yield return new WaitForSeconds(.4f);
+                virtualCam.Priority = 9;
+                Fade.SetTrigger("FadeOut");
             }
         }
 
-        IEnumerator Escape()
+        private IEnumerator Escape()
         {
             StartCoroutine(changeCam());
             yield return new WaitForSeconds(1.5f);
             anim.SetBool("Escaped", true);
-            transform.position = Vector3.MoveTowards(transform.position, posA.position, speed * Time.deltaTime);
-    
+            MoveToPosition(posA);
             if (transform.position == posA.position)
             {
                 devilAnim.SetBool("Escaped", false);
+                GameObject go = nextPerson.nextPerson();
+                if (doOnce)
+                {
+                    doOnce = false;
+                    Instantiate(go, transform.position, Quaternion.identity);
+                    dialogueUI.dialogueActivator.canInteract = true;
+                }
+
                 Destroy(this.gameObject);
             }
         }
