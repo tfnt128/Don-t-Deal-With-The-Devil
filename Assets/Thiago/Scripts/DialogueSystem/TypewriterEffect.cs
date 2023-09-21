@@ -8,19 +8,21 @@ using Random = UnityEngine.Random;
 public class TypewriterEffect : MonoBehaviour
 {
     [SerializeField] public float typewriterSpeed = 50f;
+    [SerializeField] private AudioSource devilSpeak;
+    
 
     public bool isRunning { get; private set; }
-    public bool isFaster;
-    public AudioSource speak1;
+    private DialogueUI dialogue;
+    private bool isFaster;
     private AudioSource[] audioSources;
-    public AudioSource devilSpeak;
-    public DialogueUI dialogue;
     private int currentAudioIndex = 0;
+    private AudioSource speak1;
     private bool isPlayingAudio = false;
     private int lastAudioIndex = -1;
 
     private void Start()
     {
+        dialogue = GetComponent<DialogueUI>();
         audioSources = new AudioSource[] { speak1};
         ShuffleArray(audioSources);
     }
