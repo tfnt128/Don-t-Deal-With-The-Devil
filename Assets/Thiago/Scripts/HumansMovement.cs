@@ -16,7 +16,6 @@ public class HumansMovement : MonoBehaviour
         [SerializeField] private Animator talkAnim;
         
         private RandomPersons nextPerson;
-        public bool escaped;
         private Transform posA;
         private Transform posB;
         private bool toB = true;
@@ -27,7 +26,7 @@ public class HumansMovement : MonoBehaviour
         private Animator devilAnim;
         private DialogueUI dialogueUI;
         
-        
+        public bool escaped{ private get; set; }
         private void Start()
         {
             speak = GetComponentInChildren<AudioSource>();
