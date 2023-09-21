@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: EsportsResp
   m_EditorClassIdentifier: 
   dialogue:
-  - What will I possibly do with that?
+  - What??
+  - There are no Esports for this kinda game
+  - We are talking abou BULLET HELL, ARE YOU MAD?
   responses: []
   IsDevil: 0
   WrongAnswer: 1
   devilAngryTalk: 0
-  Continue: {fileID: 11400000, guid: 6ea69633d979c8c469a9c188b0ae723a, type: 2}
+  Continue: {fileID: 0}

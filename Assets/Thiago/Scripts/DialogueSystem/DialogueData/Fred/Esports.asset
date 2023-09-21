@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Esports
   m_EditorClassIdentifier: 
   dialogue:
-  - I think a 90's PC will fit you well.
-  - Don't you think?
+  - How about joining a Esports team?
+  - They can teach you somethin.
   responses: []
   IsDevil: 1
   WrongAnswer: 0
   devilAngryTalk: 0
-  Continue: {fileID: 11400000, guid: f82c1f12aba870d4b988df813c28f7ec, type: 2}
+  Continue: {fileID: 11400000, guid: 52f2922a6c8dc1b479aac901bbcb8b4d, type: 2}

@@ -330,7 +330,6 @@ MonoBehaviour:
   characterDialogue: {fileID: 11400000, guid: 8ad7de9f925372742bff26ee6eb76967, type: 2}
   escapeDialogue: {fileID: 11400000, guid: 06e7a09e8954dab44a0c4e74778af1d7, type: 2}
   talkAnim: {fileID: 3523032038973236242}
-  escaped: 0
 --- !u!50 &3523032038631192286
 Rigidbody2D:
   serializedVersion: 4
@@ -488,7 +487,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3523032038973236252}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.398502, y: 0.58565235, z: 0}
+  m_LocalPosition: {x: 27.398502, y: 0.24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -536,7 +535,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5bd1d2d423250cd4ebeb77b9a191316e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5b123d5fae4bf704f8d5fee14c9c6749, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -557,7 +556,7 @@ Animator:
   m_GameObject: {fileID: 3523032038973236252}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c345ce2ccd17a8043abe3856f710fd54, type: 2}
+  m_Controller: {fileID: 9100000, guid: 04982fd33ba225345984517339dde2c6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

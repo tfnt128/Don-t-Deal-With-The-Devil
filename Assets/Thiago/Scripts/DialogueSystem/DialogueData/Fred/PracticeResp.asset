@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PracticeResp
   m_EditorClassIdentifier: 
   dialogue:
-  - I don't need an 4090 to play BULLET HEEL games...
+  - It souns gooooood
   responses: []
   IsDevil: 0
-  WrongAnswer: 1
+  WrongAnswer: 0
   devilAngryTalk: 0
-  Continue: {fileID: 11400000, guid: 6ea69633d979c8c469a9c188b0ae723a, type: 2}
+  Continue: {fileID: 0}

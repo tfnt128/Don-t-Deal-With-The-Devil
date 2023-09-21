@@ -10831,7 +10831,7 @@ PrefabInstance:
     - target: {fileID: 7258367289849030352, guid: 41a14d459d970574cbd0224f3fc13116, type: 3}
       propertyPath: speak1
       value: 
-      objectReference: {fileID: 1705140089}
+      objectReference: {fileID: 0}
     - target: {fileID: 7258367289849030352, guid: 41a14d459d970574cbd0224f3fc13116, type: 3}
       propertyPath: speak2
       value: 
@@ -10863,7 +10863,7 @@ PrefabInstance:
     - target: {fileID: 7258367289849030354, guid: 41a14d459d970574cbd0224f3fc13116, type: 3}
       propertyPath: humans
       value: 
-      objectReference: {fileID: 1813956854}
+      objectReference: {fileID: 0}
     - target: {fileID: 7258367289849030354, guid: 41a14d459d970574cbd0224f3fc13116, type: 3}
       propertyPath: devilCam
       value: 
@@ -11788,11 +11788,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!82 &1705140089 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3523032038503489874, guid: 834ac96bfe2c13b46bb43759d724c18a, type: 3}
-  m_PrefabInstance: {fileID: 3523032039101070891}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1715985727
 GameObject:
   m_ObjectHideFlags: 0
@@ -12379,17 +12374,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1813956854 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3523032038631192285, guid: 834ac96bfe2c13b46bb43759d724c18a, type: 3}
-  m_PrefabInstance: {fileID: 3523032039101070891}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c387612911810df4889ea7c260956b8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1821416837
 GameObject:
   m_ObjectHideFlags: 0

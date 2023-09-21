@@ -330,7 +330,6 @@ MonoBehaviour:
   characterDialogue: {fileID: 11400000, guid: 271eefe320131ee478b0f03a535afcc2, type: 2}
   escapeDialogue: {fileID: 11400000, guid: 6a7370b75e59f9846a279d5035005771, type: 2}
   talkAnim: {fileID: 3523032038973236242}
-  escaped: 0
 --- !u!50 &3523032038631192286
 Rigidbody2D:
   serializedVersion: 4

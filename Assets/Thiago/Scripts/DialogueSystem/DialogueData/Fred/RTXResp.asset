@@ -18,4 +18,4 @@ MonoBehaviour:
   IsDevil: 0
   WrongAnswer: 1
   devilAngryTalk: 0
-  Continue: {fileID: 11400000, guid: 6ea69633d979c8c469a9c188b0ae723a, type: 2}
+  Continue: {fileID: 0}

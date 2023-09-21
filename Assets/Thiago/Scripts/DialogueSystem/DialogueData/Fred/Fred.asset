@@ -22,7 +22,7 @@ MonoBehaviour:
   - responseText: Offer him an 90's computer
     dialogueObject: {fileID: 11400000, guid: 23879fec39b09a54ab080ae28eda0466, type: 2}
   - responseText: How about you join a E-sports team?
-    dialogueObject: {fileID: 11400000, guid: 97ff3b7b102e6934db09852e3dc75ef9, type: 2}
+    dialogueObject: {fileID: 11400000, guid: 39a910bc53710d7439cef5e095bbcfc8, type: 2}
   - responseText: How about a place you can practice?
     dialogueObject: {fileID: 11400000, guid: b5898355039fb36488ce9c722c36e4f0, type: 2}
   IsDevil: 0

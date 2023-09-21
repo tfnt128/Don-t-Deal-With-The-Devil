@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: FredEscape
   m_EditorClassIdentifier: 
   dialogue:
-  - adadad
-  - I'am getting out of here
+  - I don't like you
+  - See you soon weirdo.
   responses: []
   IsDevil: 0
   WrongAnswer: 0
