@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    private DialogueUI dialogue;
-    private HumansMovement _humansMovement;
+    public DialogueUI dialogue;
+    public HumansMovement _humansMovement;
 
     private void Start()
     {

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - How about joining a Esports team?
-  - They can teach you somethin.
+  - They can teach you something useful.
   responses: []
   IsDevil: 1
   WrongAnswer: 0

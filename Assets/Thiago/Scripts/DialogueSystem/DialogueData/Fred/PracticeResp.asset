@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PracticeResp
   m_EditorClassIdentifier: 
   dialogue:
-  - It souns gooooood
+  - It souns gooooood!!!!
   responses: []
   IsDevil: 0
   WrongAnswer: 0

@@ -209,10 +209,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3523032038631192287}
   - component: {fileID: 3523032038631192280}
-  - component: {fileID: 3523032038631192281}
   - component: {fileID: 3523032038631192285}
   - component: {fileID: 3523032038631192286}
   - component: {fileID: 3523032038631192275}
+  - component: {fileID: 8959163901044956343}
   m_Layer: 0
   m_Name: Rocker
   m_TagString: Player
@@ -294,26 +294,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3523032038631192281
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3523032038631192282}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 13a9a3674f2375f498a86e436be865c8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &3523032038631192285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,7 +309,6 @@ MonoBehaviour:
   speed: 3
   characterDialogue: {fileID: 11400000, guid: 271eefe320131ee478b0f03a535afcc2, type: 2}
   escapeDialogue: {fileID: 11400000, guid: 6a7370b75e59f9846a279d5035005771, type: 2}
-  talkAnim: {fileID: 3523032038973236242}
 --- !u!50 &3523032038631192286
 Rigidbody2D:
   serializedVersion: 4
@@ -377,6 +356,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1607137, y: 2.1994042}
   m_EdgeRadius: 0
+--- !u!114 &8959163901044956343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3523032038631192282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3dd6688dafa6e0448f925c834c75578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkingBackSprites:
+  - {fileID: 21300000, guid: b878d707d2c50134cb665c06ec5cc9e4, type: 3}
+  - {fileID: 21300000, guid: fc55f50054a525349a12a416dc522184, type: 3}
+  - {fileID: 21300000, guid: e30db23e6786ef64088b069b99f1e855, type: 3}
+  walkingFrontSprites:
+  - {fileID: 21300000, guid: 6dee43974870e4e40b81a1893f3720c7, type: 3}
+  - {fileID: 21300000, guid: c9d8c6d73c1d16348ad9c5ff9d986ac1, type: 3}
+  - {fileID: 21300000, guid: b4d6c25b5aaf45f4196a42646a0ac70d, type: 3}
+  spriteRenderer: {fileID: 3523032038631192280}
+  isWalking: 1
+  isWalkingFront: 0
+  frameChangeDelay: 0.2
 --- !u!1 &3523032038680710341
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,7 +474,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3523032038973236243}
   - component: {fileID: 3523032038973236241}
-  - component: {fileID: 3523032038973236242}
+  - component: {fileID: 381155313}
   m_Layer: 0
   m_Name: rockerTalk1
   m_TagString: Untagged
@@ -546,26 +549,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3523032038973236242
-Animator:
-  serializedVersion: 5
+--- !u!114 &381155313
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3523032038973236252}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c345ce2ccd17a8043abe3856f710fd54, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ef80e3aa8b7094d9fc9686f5ba6c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  talkingSprites:
+  - {fileID: 21300000, guid: 5bd1d2d423250cd4ebeb77b9a191316e, type: 3}
+  - {fileID: 21300000, guid: 7aee693f852d3e24ab5c1a9228a94d4f, type: 3}
+  spriteRenderer: {fileID: 3523032038973236241}
+  isTalking: 0
 --- !u!1 &3523032039051166782
 GameObject:
   m_ObjectHideFlags: 0

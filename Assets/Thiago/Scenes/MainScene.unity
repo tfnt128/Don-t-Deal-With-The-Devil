@@ -2478,6 +2478,11 @@ Transform:
   m_Father: {fileID: 529537855}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &359686319 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3523032038631192280, guid: 834ac96bfe2c13b46bb43759d724c18a, type: 3}
+  m_PrefabInstance: {fileID: 3523032039101070891}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &411406164
 GameObject:
   m_ObjectHideFlags: 0
@@ -8928,6 +8933,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0502281b1fae054428f4b9d469b98507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogue: {fileID: 0}
+  _humansMovement: {fileID: 0}
 --- !u!1 &1261509567
 GameObject:
   m_ObjectHideFlags: 0
@@ -14173,5 +14180,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8959163901044956343, guid: 834ac96bfe2c13b46bb43759d724c18a, type: 3}
+      propertyPath: isWalking
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959163901044956343, guid: 834ac96bfe2c13b46bb43759d724c18a, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 359686319}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 834ac96bfe2c13b46bb43759d724c18a, type: 3}

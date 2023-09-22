@@ -209,10 +209,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3523032038631192287}
   - component: {fileID: 3523032038631192280}
-  - component: {fileID: 3523032038631192281}
   - component: {fileID: 3523032038631192285}
   - component: {fileID: 3523032038631192286}
   - component: {fileID: 3523032038631192275}
+  - component: {fileID: 4401160574618713436}
   m_Layer: 0
   m_Name: Fred
   m_TagString: Player
@@ -294,26 +294,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3523032038631192281
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3523032038631192282}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 13a9a3674f2375f498a86e436be865c8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &3523032038631192285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,7 +309,7 @@ MonoBehaviour:
   speed: 3
   characterDialogue: {fileID: 11400000, guid: 8ad7de9f925372742bff26ee6eb76967, type: 2}
   escapeDialogue: {fileID: 11400000, guid: 06e7a09e8954dab44a0c4e74778af1d7, type: 2}
-  talkAnim: {fileID: 3523032038973236242}
+  escaped: 0
 --- !u!50 &3523032038631192286
 Rigidbody2D:
   serializedVersion: 4
@@ -377,6 +357,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1607137, y: 2.1994042}
   m_EdgeRadius: 0
+--- !u!114 &4401160574618713436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3523032038631192282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3dd6688dafa6e0448f925c834c75578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkingBackSprites:
+  - {fileID: 21300000, guid: 5f11aee20b87b5e40b7afcadc4d56be1, type: 3}
+  - {fileID: 21300000, guid: 420c9656c2a86ca47936659a8c4becaa, type: 3}
+  - {fileID: 21300000, guid: 697e97bdfe32828479bb07e9cb4d8f58, type: 3}
+  walkingFrontSprites:
+  - {fileID: 21300000, guid: c490774ac7b083b4992d8cf786d3d9d2, type: 3}
+  - {fileID: 21300000, guid: 5db5a19ab5989fc428edea4c0493f4cb, type: 3}
+  - {fileID: 21300000, guid: 57b22ef31a3d00d4ebd567fede67f761, type: 3}
+  isWalking: 0
+  isWalkingFront: 0
+  frameChangeDelay: 0.2
 --- !u!1 &3523032038680710341
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,7 +474,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3523032038973236243}
   - component: {fileID: 3523032038973236241}
-  - component: {fileID: 3523032038973236242}
+  - component: {fileID: 2851260179619892718}
   m_Layer: 0
   m_Name: fredrTalk1
   m_TagString: Untagged
@@ -487,7 +490,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3523032038973236252}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.398502, y: 0.24, z: 0}
+  m_LocalPosition: {x: 27.398502, y: 0.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -535,7 +538,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5b123d5fae4bf704f8d5fee14c9c6749, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 480fe4d227d96354a97cc57833a32135, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -546,26 +549,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3523032038973236242
-Animator:
-  serializedVersion: 5
+--- !u!114 &2851260179619892718
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3523032038973236252}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 04982fd33ba225345984517339dde2c6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ef80e3aa8b7094d9fc9686f5ba6c9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  talkingSprites:
+  - {fileID: 21300000, guid: 480fe4d227d96354a97cc57833a32135, type: 3}
+  - {fileID: 21300000, guid: ff8ded2e89c06ce4cb4d30a05f55b445, type: 3}
 --- !u!1 &3523032039051166782
 GameObject:
   m_ObjectHideFlags: 0

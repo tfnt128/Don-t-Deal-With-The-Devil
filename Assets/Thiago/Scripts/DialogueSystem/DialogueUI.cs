@@ -26,7 +26,7 @@ public class DialogueUI : MonoBehaviour
     
     private DialogueObject escapeDialogues; 
     private HumansMovement human;
-    private Animator humanAnim;
+    public TalkAnimator humanAnim;
     
     private int cunningPer;
     private float cunningAmount = 100f;
@@ -37,24 +37,31 @@ public class DialogueUI : MonoBehaviour
 
     public bool isHuman { get; private set; }
     public bool isOpen { get; private set; }
-    
-    private void Start()
+
+    private void Awake()
     {
         if (UiHuman != null)
         {
             UiHuman(posA, posB);
         }
         typewriterEffect = GetComponent<TypewriterEffect>();
+    }
+
+    private void Start()
+    {
+        
+        
         responseHadler = GetComponent<ResponseHadler>();
     }
     
-    public void OnHumanSpawned(HumansMovement reference, Animator anim, DialogueObject newDialogue, DialogueObject escapeDialogue, AudioSource speak1)
+    public void OnHumanSpawned(TalkAnimator talkAnim, HumansMovement reference, DialogueObject newDialogue, DialogueObject escapeDialogue, AudioSource speak1)
     {
-        humanAnim = anim;
-        dialogueActivator.UpdateDialogueObejct(newDialogue);
+        humanAnim = talkAnim;
         typewriterEffect.updateSpeaker(speak1);
+        dialogueActivator.UpdateDialogueObejct(newDialogue);
         escapeDialogues = escapeDialogue;
         human = reference;
+        
     }
 
     private void Update()
@@ -116,7 +123,7 @@ public class DialogueUI : MonoBehaviour
             }
             else
             {
-                humanAnim.SetBool("IsSpeaking", true);
+                humanAnim.Talk(true);
             }
             string dialogue = dialogueObject.Dialogue[i];
 
@@ -126,7 +133,7 @@ public class DialogueUI : MonoBehaviour
 
 
             devilAnimTalk.SetBool("IsSpeaking", false);
-            humanAnim.SetBool("IsSpeaking", false);
+            humanAnim.Talk(false);
             yield return new WaitForSeconds(.5f);
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
             isOver = false;
@@ -142,7 +149,7 @@ public class DialogueUI : MonoBehaviour
         
         if (dialogueObject.HasResponses)
         {
-            humanAnim.SetBool("IsSpeaking", false);
+            humanAnim.Talk(false);
             if (!isOver)
             {
                 yield return new WaitUntil(() => isOver = true);

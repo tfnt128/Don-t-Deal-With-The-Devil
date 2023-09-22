@@ -6,45 +6,48 @@ using UnityEngine;
 public class HumansMovement : MonoBehaviour
 {
     
-        public delegate void humanSpawnedHandler(HumansMovement selfReference, Animator anim, DialogueObject newDialogue, DialogueObject escapeDialogue, AudioSource speak1);
+        public delegate void humanSpawnedHandler(TalkAnimator talkAnim, HumansMovement selfReference, DialogueObject newDialogue, DialogueObject escapeDialogue, AudioSource speak1);
         public event humanSpawnedHandler humanSpawned;
         
         
         [SerializeField] private float speed = 2.0f;
         [SerializeField] private DialogueObject characterDialogue;
         [SerializeField] private DialogueObject escapeDialogue;
-        [SerializeField] private Animator talkAnim;
-        
+
         private RandomPersons nextPerson;
         private Transform posA;
         private Transform posB;
         private bool toB = true;
-        private Animator anim;
         private Animator Fade;
         private CinemachineVirtualCamera virtualCam;
         private AudioSource speak;
         private Animator devilAnim;
         private DialogueUI dialogueUI;
-        
-        public bool escaped{ private get; set; }
+        private WalkAnimator anim;
+        private TalkAnimator talkAnim;
+
+
+        public bool escaped { get; set; }
         private void Start()
         {
+            talkAnim = GetComponentInChildren<TalkAnimator>();
             speak = GetComponentInChildren<AudioSource>();
             dialogueUI = FindObjectOfType<DialogueUI>();
+            anim = GetComponent<WalkAnimator>();
+            nextPerson = FindObjectOfType<RandomPersons>();
+            GameObject fadego = GameObject.FindGameObjectWithTag("Fade");
+            Fade = fadego.GetComponent<Animator>();
+            virtualCam = GetComponentInChildren<CinemachineVirtualCamera>();
             if (dialogueUI != null)
             {
                 posA = dialogueUI.posA;
                 posB = dialogueUI.posB;
                 devilAnim = dialogueUI.devilAnimEscaped;
                 HumansMovement selfReference = this;
-                dialogueUI.OnHumanSpawned(selfReference,talkAnim, characterDialogue, escapeDialogue, speak);
+                dialogueUI.OnHumanSpawned(talkAnim, selfReference, characterDialogue, escapeDialogue, speak);
             }
-            anim = GetComponent<Animator>();
-            nextPerson = FindObjectOfType<RandomPersons>();
-            GameObject fadego = GameObject.FindGameObjectWithTag("Fade");
-            Fade = fadego.GetComponent<Animator>();
             transform.position = posA.transform.position;
-            virtualCam = GetComponentInChildren<CinemachineVirtualCamera>();
+            anim.StartWalking(false);
 
 
         }
@@ -74,7 +77,7 @@ public class HumansMovement : MonoBehaviour
 
             if (transform.position == target.position)
             {
-                anim.SetBool("IsWalking", false);
+                anim.StopAnimations();
                 StartCoroutine(changeCam());
                 toB = false;
             }
@@ -109,8 +112,9 @@ public class HumansMovement : MonoBehaviour
         {
             StartCoroutine(changeCam());
             yield return new WaitForSeconds(1.5f);
-            anim.SetBool("Escaped", true);
+            anim.StartWalking(true);
             MoveToPosition(posA);
+            
             if (transform.position == posA.position)
             {
                 devilAnim.SetBool("Escaped", false);
